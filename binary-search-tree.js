@@ -279,6 +279,23 @@ class BinarySearchTree {
     }
     return Math.max(this.height(node.left), this.height(node.right)) + 1;
   }
+
+  /**
+   * Calculates the depth of a node in the binary search tree.
+   * @param {Node} node - The node to calculate the depth for.
+   * @param {Node} parent - The parent node to start the search from. Defaults to the head node.
+   * @param {number} depth - The current depth of the search. Defaults to 0.
+   * @returns {number} - The depth of the node. Returns -1 if the node is not found.
+   */
+  depth(node, parent = this.head, depth = 0) {
+    if (parent === null) {
+      return -1;
+    }
+    if (node === parent) {
+      return depth;
+    }
+    return this.depth(node, parent.left, depth + 1) || this.depth(node, parent.right, depth + 1);
+  }
 }
 
 const b = new BinarySearchTree();
