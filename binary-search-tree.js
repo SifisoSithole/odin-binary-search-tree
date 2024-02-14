@@ -219,6 +219,54 @@ class BinarySearchTree {
       }
     }
   }
+
+  /**
+   * Performs an in-order traversal of the binary search tree and applies the given
+   * callback function to each node.
+   * @param {function} callback - The callback function to be applied to each node.
+   * @param {TreeNode} [node=this.head] - The starting node for the traversal. Defaults
+   * to the head node of the tree.
+   */
+  inOrder(callback, node = this.head) {
+    if (node === null) {
+      return;
+    }
+    this.inOrder(callback, node.left);
+    callback(node);
+    this.inOrder(callback, node.right);
+  }
+
+  /**
+   * Performs a pre-order traversal of the binary search tree, calling the specified
+   * callback function on each node.
+   * @param {function} callback - The callback function to be called on each node.
+   * @param {TreeNode} [node=this.head] - The starting node for the traversal. Defaults to
+   * the head node of the tree.
+   */
+  preOrder(callback, node = this.head) {
+    if (node === null) {
+      return;
+    }
+    callback(node);
+    this.preOrder(callback, node.left);
+    this.preOrder(callback, node.right);
+  }
+
+  /**
+   * Performs a post-order traversal of the binary search tree and applies the given
+   * callback function to each node.
+   * @param {function} callback - The callback function to be applied to each node.
+   * @param {TreeNode} [node=this.head] - The starting node for the traversal. Defaults
+   * to the head node of the tree.
+   */
+  postOrder(callback, node = this.head) {
+    if (node === null) {
+      return;
+    }
+    this.postOrder(callback, node.left);
+    this.postOrder(callback, node.right);
+    callback(node);
+  }
 }
 
 const b = new BinarySearchTree();
