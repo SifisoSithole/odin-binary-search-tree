@@ -175,6 +175,26 @@ class BinarySearchTree {
       }
     }
   }
+
+  /**
+   * Finds a node with the specified value in the binary search tree.
+   * @param {*} value - The value to search for.
+   * @returns {Node|null} - The node with the specified value, or null if not found.
+   */
+  find(value) {
+    let current = this.head;
+    while (current !== null) {
+      if (value === current.value) {
+        return current;
+      }
+      if (value < current.value) {
+        current = current.left;
+      } else {
+        current = current.right;
+      }
+    }
+    return null;
+  }
 }
 
 const b = new BinarySearchTree();
