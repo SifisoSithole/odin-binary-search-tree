@@ -62,12 +62,6 @@ Prints the binary search tree in a pretty format.
 - `prefix`: The prefix string for indentation.
 - `isLeft`: Indicates if the current node is the left child of its parent.
 
-#### `createBST(array)`
-
-Creates a binary search tree from an array.
-
-- `array`: The array to create the binary search tree from.
-
 #### `buildTree(array)`
 
 Builds a binary search tree from an array.

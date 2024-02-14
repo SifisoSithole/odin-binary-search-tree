@@ -29,25 +29,6 @@ class BinarySearchTree {
   }
 
   /**
-   * Creates a binary search tree from an array.
-   * @param {Array} array - The array to create the binary search tree from.
-   * @returns {Node} - The root node of the binary search tree.
-   * @throws {Error} - If the input is not an array.
-   */
-  createBST(array) {
-    if (!Array.isArray(array)) throw new Error('Works only with arrays');
-    if (array.length === 0) return null;
-    if (array.length === 1) {
-      return new Node(array[0]);
-    }
-    const middle = Math.floor(array.length / 2);
-    const root = new Node(array[middle]);
-    root.left = this.createBST(array.slice(0, middle));
-    root.right = this.createBST(array.slice(middle + 1));
-    return root;
-  }
-
-  /**
    * Builds a binary search tree from an array.
    *
    * @param {Array} array - The array to build the binary search tree from.
@@ -55,6 +36,25 @@ class BinarySearchTree {
    * @throws {Error} - If the input is not an array.
    */
   buildTree(array) {
+    /**
+     * Creates a binary search tree from an array.
+     * @param {Array} array - The array to create the binary search tree from.
+     * @returns {Node} - The root node of the binary search tree.
+     * @throws {Error} - If the input is not an array.
+     */
+    function createBST(subArray) {
+      if (!Array.isArray(subArray)) throw new Error('Works only with arrays');
+      if (subArray.length === 0) return null;
+      if (subArray.length === 1) {
+        return new Node(subArray[0]);
+      }
+      const middle = Math.floor(subArray.length / 2);
+      const root = new Node(subArray[middle]);
+      root.left = this.createBST(subArray.slice(0, middle));
+      root.right = this.createBST(subArray.slice(middle + 1));
+      return root;
+    }
+
     if (!Array.isArray(array)) throw new Error('Works only with arrays');
     if (array.length === 0) return null;
     array.sort((a, b) => a - b);
@@ -62,8 +62,8 @@ class BinarySearchTree {
     const filteredArray = array.filter((item, index, inputArray) => inputArray.indexOf(item) === index);
     const middle = Math.floor(filteredArray.length / 2);
     this.head = new Node(filteredArray[middle]);
-    this.head.left = this.createBST(filteredArray.slice(0, middle));
-    this.head.right = this.createBST(filteredArray.slice(middle + 1));
+    this.head.left = createBST(filteredArray.slice(0, middle));
+    this.head.right = createBST(filteredArray.slice(middle + 1));
     return this.head;
   }
 
