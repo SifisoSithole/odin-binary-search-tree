@@ -23,6 +23,7 @@ class BinarySearchTree {
     if (node.right !== null) {
       this.prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
     }
+    // eslint-disable-next-line no-console
     console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.value}`);
     if (node.left !== null) {
       this.prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
@@ -68,6 +69,13 @@ class BinarySearchTree {
     return this.head;
   }
 
+  /**
+   * Inserts a new node with the given value into the binary search tree.
+   * If the value already exists in the tree, it will not be inserted.
+   *
+   * @param {any} value - The value to be inserted into the tree.
+   * @returns {void}
+   */
   insert(value) {
     if (this.head === null) {
       this.head = new Node(value);
@@ -95,6 +103,17 @@ class BinarySearchTree {
     }
   }
 
+  /**
+   * Deletes a node with the specified value from the binary search tree.
+   * If the node is found, it is removed from the tree.
+   * If the node has no children, it is simply removed.
+   * If the node has one child, the child takes its place.
+   * If the node has two children, the minimum value from the right subtree
+   * is used to replace the node.
+   *
+   * @param {any} value - The value of the node to be deleted.
+   * @returns {void}
+   */
   delete(value) {
     if (this.head === null) {
       return;
@@ -161,5 +180,8 @@ class BinarySearchTree {
 const b = new BinarySearchTree();
 const head = b.buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 b.prettyPrint(head);
-
+b.insert(25);
+b.prettyPrint(head);
+b.delete(7);
+b.prettyPrint(head);
 module.export = BinarySearchTree;
