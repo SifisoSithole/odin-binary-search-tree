@@ -296,6 +296,19 @@ class BinarySearchTree {
     }
     return this.depth(node, parent.left, depth + 1) || this.depth(node, parent.right, depth + 1);
   }
+
+  /**
+   * Checks if the binary search tree is balanced.
+   * @returns {boolean} - True if the tree is balanced, false otherwise.
+   */
+  isBalanced() {
+    if (this.head === null) {
+      return true;
+    }
+    const leftHeight = this.height(this.head.left);
+    const rightHeight = this.height(this.head.right);
+    return Math.abs(leftHeight - rightHeight) <= 1;
+  }
 }
 
 const b = new BinarySearchTree();
