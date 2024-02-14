@@ -4,9 +4,7 @@ const Node = require('./node');
  * Represents a Binary Search Tree.
  */
 class BinarySearchTree {
-  constructor() {
-    this.head = null;
-  }
+  head = null;
 
   /**
    * Prints the binary search tree in a pretty format.
@@ -326,4 +324,4 @@ class BinarySearchTree {
   }
 }
 
-module.export = BinarySearchTree;
+module.exports = BinarySearchTree;
