@@ -267,6 +267,18 @@ class BinarySearchTree {
     this.postOrder(callback, node.right);
     callback(node);
   }
+
+  /**
+   * Calculates the height of the binary search tree starting from the given node.
+   * @param {Node} node - The starting node. If not provided, the head node is used.
+   * @returns {number} - The height of the binary search tree.
+   */
+  height(node = this.head) {
+    if (node === null) {
+      return -1;
+    }
+    return Math.max(this.height(node.left), this.height(node.right)) + 1;
+  }
 }
 
 const b = new BinarySearchTree();
@@ -276,4 +288,5 @@ b.insert(25);
 b.prettyPrint(head);
 b.delete(7);
 b.prettyPrint(head);
+console.log(b.height());
 module.export = BinarySearchTree;
