@@ -309,14 +309,21 @@ class BinarySearchTree {
     const rightHeight = this.height(this.head.right);
     return Math.abs(leftHeight - rightHeight) <= 1;
   }
+
+  /**
+   * Rebalances the binary search tree if it is not balanced.
+   * It collects the values of all nodes in an in-order traversal,
+   * then rebuilds the tree using the collected values.
+   */
+  rebalance() {
+    if (!this.isBalanced()) {
+      const nodes = [];
+      this.inOrder((node) => {
+        nodes.push(node.value);
+      });
+      this.buildTree(nodes);
+    }
+  }
 }
 
-const b = new BinarySearchTree();
-const head = b.buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
-b.prettyPrint(head);
-b.insert(25);
-b.prettyPrint(head);
-b.delete(7);
-b.prettyPrint(head);
-console.log(b.height());
 module.export = BinarySearchTree;
