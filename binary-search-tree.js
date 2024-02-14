@@ -195,6 +195,30 @@ class BinarySearchTree {
     }
     return null;
   }
+
+  /**
+   * Performs a level order traversal on the binary search tree and applies the
+   * given callback function to each node.
+   *
+   * @param {function} callback - The callback function to be applied to each node.
+   * @returns {void}
+   */
+  levelOrder(callback) {
+    if (this.head === null) {
+      return;
+    }
+    const queue = [this.head];
+    while (queue.length > 0) {
+      const node = queue.shift();
+      callback(node);
+      if (node.left !== null) {
+        queue.push(node.left);
+      }
+      if (node.right !== null) {
+        queue.push(node.right);
+      }
+    }
+  }
 }
 
 const b = new BinarySearchTree();
